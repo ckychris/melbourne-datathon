@@ -22,7 +22,7 @@ Working with the example notebooks:
 Tennessee, Ioanna and Nathan will maintain a set of basic example notebooks in
 the  directory 'notebooks/examples/' to demonstrate basic techniques.
 
--  About the directory layout:
+About the directory layout:
 -      scripts/ <-- command-line tools to execute a process
 -      src/ <-- handy methods and functions for re-use
 -      notebooks/
