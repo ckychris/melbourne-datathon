@@ -21,3 +21,16 @@ Working with the example notebooks:
 
 Tennessee, Ioanna and Nathan will maintain a set of basic example notebooks in
 the  directory 'notebooks/examples/' to demonstrate basic techniques.
+
+About the directory layout:
+    scripts/ <-- command-line tools to execute a process
+    src/ <-- handy methods and functions for re-use
+    notebooks/
+       examples/ <-- showing based techniques
+       <name>/ <-- personal working directories
+    submissions/
+       <name>/  <-- put your submission files from your experiments here
+
+Suggestions for good work practises:
+   1. Whenever you make a submission that's an improvement, create a copy of
+      that notebook and put a version number on it.
