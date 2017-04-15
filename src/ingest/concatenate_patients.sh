@@ -8,9 +8,9 @@
 
 head -1 patients_1.txt > all_patients.txt
 
-for f in patients_*.txt ; do
+for f in {1..50} ; do
     echo ${f}
-    grep -v ^Patient_ID ${f} >> all_patients.txt
+    grep -v ^Patient_ID patients_${f}.txt >> all_patients.txt
 done
 
 #----------------------------------------------------------------------
