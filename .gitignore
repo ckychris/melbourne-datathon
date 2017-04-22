@@ -1,5 +1,5 @@
 # Don't commit the data directory
-data/
+data/raw/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
