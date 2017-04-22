@@ -2,14 +2,16 @@
 
 ROOT=`pwd`
 
+# Pull the datasets
+
 pushd data
 wget -O gdrive https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTA&export=download
 chmod +x gdrive
 ./gdrive download 0B9t_F6MeU1IcTXZMMGpQNDFGQU0
 # Unzip the password protected zipfile
 unzip -P J34#PP3_MelbDatathon2017 MelbDatathon2017.zip
-mkdir -p raw;
-mv MelbDatathon2017/* raw/;
+mkdir -p raw
+mv MelbDatathon2017/* raw/
 rm -rf MelbDatathon2017*
 
 popd
