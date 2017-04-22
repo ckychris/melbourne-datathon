@@ -15,5 +15,5 @@ dependencies:
   - jupyter_contrib_nbextensions
   - scikit-learn
   - seaborn
-  - sqlite3
+  - sqllite
   - requests
