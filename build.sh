@@ -22,7 +22,13 @@ export PATH=$PATH:$HOME/conda/bin
 
 # Switch to the setup directory, create the conda env and build the database.
 pushd setup
-conda env create -f environment.yml
-source activate kaggle
+$HOME/conda/bin/conda env create -f environment.yml
 bash database.sh
 popd
+
+# Start the jupyter notebook
+$HOME/conda/envs/kaggle/bin/jupyter notebook --generate-config
+# password: bomfire
+echo "c.NotebookApp.password = u'sha1:0c7fecc29fdf:4be26cf9954721c3d36a6d48781e85c94ce078f7'" >> ~/.jupyter/jupyter_notebook_config.py
+
+$HOME/conda/envs/kaggle/bin/jupyter notebook --no-browser -y --ip=*

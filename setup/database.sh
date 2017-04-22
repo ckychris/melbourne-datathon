@@ -16,6 +16,7 @@ sqlite3 $DB "
 
 sqlite3 -separator $'\t' $DB ".import $DATA/raw/Lookups/patients.txt patients"
 sqlite3 $DB "CREATE INDEX patients_PatientID_Index ON patients(Patient_ID);"
+sqlite3 $DB "CREATE INDEX patients_postcode_Index ON patients(postcode);"
 
 # Transactions
 echo "- transactions"
@@ -51,6 +52,7 @@ done
 
 sqlite3 $DB "CREATE INDEX transactions_DrugID_Index ON transactions(Drug_ID);"
 sqlite3 $DB "CREATE INDEX transactions_PatientID_Index ON transactions(Patient_ID);"
+sqlite3 $DB "CREATE INDEX transactions_prescription_week_Index ON transactions(prescription_week);"
 
 # ChronicIllness
 echo "- chronic illness"
@@ -135,6 +137,7 @@ sqlite3 $DB "CREATE TABLE social
 )"
 
 sqlite3 -separator $',' $DB ".import $DATA/extra/socio_mapping.csv social"
+sqlite3 $DB "CREATE INDEX social_postcode_Index ON social(postcode);"
 
 # classification table
 echo "- classification (diabetes prescription in 2016)"
@@ -161,3 +164,5 @@ sqlite3 $DB "
     	);
 
     DROP TABLE temp;"
+
+sqlite3 $DB "CREATE INDEX classification_PatientID_Index ON classification(Patient_ID);"
