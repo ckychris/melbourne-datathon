@@ -11,18 +11,18 @@ chmod +x gdrive
 unzip -P J34#PP3_MelbDatathon2017 MelbDatathon2017.zip
 mv MelbDatathon2017 raw
 popd
-#
-# # Pull and install miniconda
-#
-# wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-# bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/conda
-# $HOME/conda/bin/conda config --add channels conda-forge
-# $HOME/conda/bin/conda update conda --yes
-# export PATH=$PATH:$HOME/conda/bin
-#
-# # Switch to the setup directory, create the conda env and build the database.
-# pushd setup
-# conda env create -f environment.yml
-# source activate kaggle
-# bash database.sh
-# popd
+
+# Pull and install miniconda
+
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/conda
+$HOME/conda/bin/conda config --add channels conda-forge
+$HOME/conda/bin/conda update conda --yes
+export PATH=$PATH:$HOME/conda/bin
+
+# Switch to the setup directory, create the conda env and build the database.
+pushd setup
+conda env create -f environment.yml
+source activate kaggle
+bash database.sh
+popd
