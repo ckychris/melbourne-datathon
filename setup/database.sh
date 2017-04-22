@@ -1,10 +1,4 @@
-#!/bin/sh
-
-# Set dir to this directory, regardless of where the script is running
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-# cd to current directory for sql scripts to create in the correct directory
-cd $DIR
+#! /usr/bin/env bash
 
 DATA=../data
 DB=../data/datasets.db
