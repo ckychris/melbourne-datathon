@@ -12,6 +12,7 @@ dependencies:
   - pip
   - notebook
   - ipywidgets
+  - ipython
   - jupyter_contrib_nbextensions
   - scikit-learn
   - seaborn
