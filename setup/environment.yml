@@ -1,0 +1,20 @@
+name: kaggle
+dependencies:
+  - python>3.4
+  - matplotlib
+  - cartopy
+  - scipy
+  - numpy
+  - pandas
+  - dask
+  - distributed
+  - bokeh
+  - pip
+  - notebook
+  - ipywidgets
+  - pytest
+  - jupyter_contrib_nbextensions
+  - nb_conda
+  - nb_conda_kernels
+  - sckit-learn
+  - seaborn
