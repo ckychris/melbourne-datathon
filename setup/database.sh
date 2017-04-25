@@ -52,7 +52,6 @@ done
 
 sqlite3 $DB "CREATE INDEX transactions_DrugID_Index ON transactions(Drug_ID);"
 sqlite3 $DB "CREATE INDEX transactions_PatientID_Index ON transactions(Patient_ID);"
-sqlite3 $DB "CREATE INDEX transactions_prescription_week_Index ON transactions(prescription_week);"
 
 # ChronicIllness
 echo "- chronic illness"
