@@ -3,62 +3,62 @@
 DATA=../data
 DB=../data/datasets.db
 
-# Patients
-echo "- patients"
-sqlite3 $DB "
-    CREATE TABLE patients
-    (
-    	Patient_ID	int
-    ,	gender	varchar(1)
-    ,	year_of_birth	smallint
-    ,	postcode	varchar(4)
-    )"
-
-sqlite3 -separator $'\t' $DB ".import $DATA/raw/Lookups/patients.txt patients"
-sqlite3 $DB "CREATE INDEX patients_PatientID_Index ON patients(Patient_ID);"
-sqlite3 $DB "CREATE INDEX patients_postcode_Index ON patients(postcode);"
-
-# Transactions
-echo "- transactions"
-sqlite3 $DB "
-    CREATE TABLE transactions
-    (
-        Patient_ID  int
-    ,   Store_ID    smallint
-    ,   Prescriber_ID   int
-    ,   Drug_ID smallint
-    ,   SourceSystem_Code   varchar(1)
-    ,   Prescription_Week   DATE
-    ,   Dispense_Week   DATE
-    ,   Drug_Code   varchar(37)
-    ,   NHS_Code    varchar(6)
-    ,   IsDeferredScript    tinyint
-    ,   Script_Qty  smallint
-    ,   Dispensed_Qty   smallint
-    ,   MaxDispense_Qty smallint
-    ,   PatientPrice_Amt    float
-    ,   WholeSalePrice_Amt  float
-    ,   GovernmentReclaim_Amt   float
-    ,   RepeatsTotal_Qty    smallint
-    ,   RepeatsLeft_Qty smallint
-    ,   StreamlinedApproval_Code    smallint
-    )"
-
-for patient_transaction in $DATA/raw/Transactions/pat*
-do
-    echo $patient_transaction
-    sqlite3 -separator $'\t' $DB ".import $patient_transaction transactions"
-done
-
-for missing_patient_transaction in $DATA/missing/mis*
-do
-    echo $missing_patient_transaction
-    sqlite3 -separator $'\t' $DB ".import $missing_patient_transaction transactions"
-done
-git
-sqlite3 $DB "CREATE INDEX transactions_DrugID_Index ON transactions(Drug_ID);"
-sqlite3 $DB "CREATE INDEX transactions_PatientID_Index ON transactions(Patient_ID);"
-
+# # Patients
+# echo "- patients"
+# sqlite3 $DB "
+#     CREATE TABLE patients
+#     (
+#     	Patient_ID	int
+#     ,	gender	varchar(1)
+#     ,	year_of_birth	smallint
+#     ,	postcode	varchar(4)
+#     )"
+#
+# sqlite3 -separator $'\t' $DB ".import $DATA/raw/Lookups/patients.txt patients"
+# sqlite3 $DB "CREATE INDEX patients_PatientID_Index ON patients(Patient_ID);"
+# sqlite3 $DB "CREATE INDEX patients_postcode_Index ON patients(postcode);"
+#
+# # Transactions
+# echo "- transactions"
+# sqlite3 $DB "
+#     CREATE TABLE transactions
+#     (
+#         Patient_ID  int
+#     ,   Store_ID    smallint
+#     ,   Prescriber_ID   int
+#     ,   Drug_ID smallint
+#     ,   SourceSystem_Code   varchar(1)
+#     ,   Prescription_Week   DATE
+#     ,   Dispense_Week   DATE
+#     ,   Drug_Code   varchar(37)
+#     ,   NHS_Code    varchar(6)
+#     ,   IsDeferredScript    tinyint
+#     ,   Script_Qty  smallint
+#     ,   Dispensed_Qty   smallint
+#     ,   MaxDispense_Qty smallint
+#     ,   PatientPrice_Amt    float
+#     ,   WholeSalePrice_Amt  float
+#     ,   GovernmentReclaim_Amt   float
+#     ,   RepeatsTotal_Qty    smallint
+#     ,   RepeatsLeft_Qty smallint
+#     ,   StreamlinedApproval_Code    smallint
+#     )"
+#
+# for patient_transaction in $DATA/raw/Transactions/pat*
+# do
+#     echo $patient_transaction
+#     sqlite3 -separator $'\t' $DB ".import $patient_transaction transactions"
+# done
+#
+# for missing_patient_transaction in $DATA/missing/mis*
+# do
+#     echo $missing_patient_transaction
+#     sqlite3 -separator $'\t' $DB ".import $missing_patient_transaction transactions"
+# done
+#
+# sqlite3 $DB "CREATE INDEX transactions_DrugID_Index ON transactions(Drug_ID);"
+# sqlite3 $DB "CREATE INDEX transactions_PatientID_Index ON transactions(Patient_ID);"
+#
 
 # ChronicIllness
 echo "- chronic illness"
