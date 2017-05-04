@@ -50,8 +50,15 @@ do
     sqlite3 -separator $'\t' $DB ".import $patient_transaction transactions"
 done
 
+for missing_patient_transaction in $DATA/missing/mis*
+do
+    echo $patient_transaction
+    sqlite3 -separator $'\t' $DB ".import $missing_patient_transaction transactions"
+done
+
 sqlite3 $DB "CREATE INDEX transactions_DrugID_Index ON transactions(Drug_ID);"
 sqlite3 $DB "CREATE INDEX transactions_PatientID_Index ON transactions(Patient_ID);"
+
 
 # ChronicIllness
 echo "- chronic illness"

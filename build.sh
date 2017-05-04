@@ -12,6 +12,12 @@ unzip -P J34#PP3_MelbDatathon2017 MelbDatathon2017.zip
 mv -f MelbDatathon2017 raw
 popd
 
+pushd data
+wget -O missing_data.zip "http://datasciencemelbourne.us13.list-manage.com/track/click?u=eeaa7da8da174d30075eee9c8&id=381dd3e395&e=4318e80f06"
+unzip -P J34#PP3_MelbDatathon2017 missing_data.zip
+mv -f MISSING_TRANSACTIONS missing
+popd
+
 # Pull and install miniconda
 
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
