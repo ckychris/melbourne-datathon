@@ -49,7 +49,6 @@ do
     echo $patient_transaction
     sqlite3 -separator $'\t' $DB ".import $patient_transaction transactions"
 done
-
 for missing_patient_transaction in $DATA/missing/mis*
 do
     echo $missing_patient_transaction
@@ -172,3 +171,22 @@ sqlite3 $DB "
     DROP TABLE temp;"
 
 sqlite3 $DB "CREATE INDEX classification_PatientID_Index ON classification(Patient_ID);"
+
+# create a monster transaction table for *fast* lookups
+echo "- transaction_merge: a large merged table for exploration"
+
+sqlite3 $DB "
+    CREATE TABLE transaction_merge AS
+        SELECT *
+        FROM transactions a
+        LEFT OUTER JOIN ChronicIllness_LookUp b
+            ON a.Drug_ID = b.MasterProductID
+        LEFT OUTER JOIN patients c
+            ON a.Patient_ID = c.Patient_ID
+        LEFT OUTER JOIN classification d
+            ON a.Patient_ID = d.Patient_ID
+        LEFT OUTER JOIN social e
+            ON c.postcode = e.postcode
+        AND a.prescription_week < '2016-01-01';"
+
+sqlite3 $DB "CREATE INDEX transaction_merge_PatientID_Index ON transaction_merge(Patient_ID)"
